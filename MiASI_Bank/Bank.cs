@@ -72,24 +72,43 @@ namespace MiASI_Bank
             return result;
         }
 
-        public bool DodajKredyt(RachunekBankowy rachunek)
+        public bool DodajKredyt(Wlasciciel wlasciciel, Kwota kwota)
         {
-            return false;
+            bool result = false;
+
+            var rachunek = SzukajRachunku(wlasciciel);
+
+            if (rachunek != null)
+            {
+                result = rachunek.DodajKredyt(kwota);
+            }
+
+            return result;
         }
 
         public bool WykonajPrzelew(ProduktBankowy zrodlo, ProduktBankowy cel, Kwota kwota)
         {
-            return false;
+            bool result = false;
+
+            if(zrodlo.Saldo.Wartosc >= kwota.Wartosc)
+            {
+                WyplacGotowke(zrodlo, kwota.Wartosc);
+                WplacGotowke(cel, kwota.Wartosc);
+
+                result = true;
+            }
+
+            return result;
         }
 
         public bool WplacGotowke(ProduktBankowy cel, Kwota kwota)
         {
-            return false;
+            return cel.WplacGotowke(kwota);
         }
 
         public bool WyplacGotowke(ProduktBankowy zrodlo, Kwota kwota)
         {
-            return false;
+            return zrodlo.WyplacGotowke(kwota);
         }
 
         public bool GenerujRaport()

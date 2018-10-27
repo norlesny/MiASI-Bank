@@ -13,5 +13,10 @@ namespace MiASI_Bank
         {
             throw new System.NotImplementedException();
         }
+
+        public bool DodajKredyt(Kwota kwota)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
