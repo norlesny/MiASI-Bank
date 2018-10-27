@@ -53,7 +53,24 @@ namespace MiASI_Bank
 
         public override bool WplacGotowke(Kwota kwota)
         {
-            Saldo.Wartosc += kwota.Wartosc;
+            if(Debet != null)
+            {
+                if (Debet.Kwota.Wartosc >= kwota.Wartosc)
+                {
+                    Debet.Kwota.Wartosc -= kwota.Wartosc;
+                }
+                else
+                {
+                    var pozostalaWplata = kwota.Wartosc - Debet.Kwota.Wartosc;
+                    Debet.Kwota.Wartosc = 0.0;
+
+                    Saldo.Wartosc += pozostalaWplata;
+                }
+            }
+            else
+            {
+                Saldo.Wartosc += kwota.Wartosc;
+            }
 
             return true;
         }
