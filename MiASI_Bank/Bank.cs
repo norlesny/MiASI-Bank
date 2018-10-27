@@ -1,10 +1,19 @@
+using System.Collections.Generic;
 using System.Transactions;
 
 namespace MiASI_Bank
 {
     public class Bank
     {
-        public bool DodajRachunek()
+        #region Pola prywatne
+
+        private List<ProduktBankowy> _produktyBankowe = new List<ProduktBankowy>();
+        
+        #endregion
+        
+        #region Metody
+        
+        public bool DodajRachunek(RachunekBankowy rachunek)
         {
             return false;
         }
@@ -48,6 +57,16 @@ namespace MiASI_Bank
         {
             return false;
         }
+
+        public Raport PobierzSaldo(ProduktBankowy produkt)
+        {
+            var raportowanie = new Raportowanie(); 
+                
+            var raport = raportowanie.GenerujRaport(produkt);
+            
+            return raport;
+        }
         
+        #endregion
     }
 }

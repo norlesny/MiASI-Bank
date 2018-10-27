@@ -1,6 +1,6 @@
 namespace MiASI_Bank
 {
-    public class Raportowanie
+    public class Raport
     {
         
     }
