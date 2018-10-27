@@ -4,7 +4,8 @@ namespace MiASI_Bank
 {
     public class ProduktBankowy
     {
-        public string NumerRachunku { get; set; }
+        public NumerProduktu Numer { get; set; }
+        public Wlasciciel Wlasciciel { get; set; }
         public DateTime DataZalozenia { get; set; }
         public Kwota Saldo { get; set; }
         public Historia Historia { get; set; }

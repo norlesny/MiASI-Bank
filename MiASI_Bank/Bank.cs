@@ -12,23 +12,63 @@ namespace MiASI_Bank
         #endregion
         
         #region Metody
-        
-        public bool DodajRachunek(RachunekBankowy rachunek)
+
+        public bool DodajRachunek(Wlasciciel wlasciciel)
         {
-            return false;
-        }
-        
-        public bool ZamknijRachunek(RachunekBankowy rachunek)
-        {
-            return false;
-        }
-        
-        public bool DodajLokate(RachunekBankowy rachunek)
-        {
-            return false;
+            bool result = false;
+            
+            var rachunek = SzukajRachunku(wlasciciel);
+            
+            if (rachunek == null)
+            {
+                rachunek = new RachunekBankowy {Wlasciciel = wlasciciel};
+
+                _produktyBankowe.Add(rachunek);
+
+                result = true;
+            }
+
+            return result;
         }
 
-        public bool ZerwijLokate(Lokata lokata)
+        private RachunekBankowy SzukajRachunku(Wlasciciel wlasciciel)
+        {
+            RachunekBankowy result;
+            
+            result = _produktyBankowe.Find(p => p is RachunekBankowy rachunek && rachunek.Wlasciciel == wlasciciel) as RachunekBankowy;
+            
+            return result;
+        }
+        
+        public bool ZamknijRachunek(Wlasciciel wlasciciel)
+        {
+            bool result = false;
+            
+            var rachunek = SzukajRachunku(wlasciciel);
+            
+            if (rachunek != null)
+            {
+                result = rachunek.Zamknij();
+            }
+
+            return result;
+        }
+        
+        public bool DodajLokate(Wlasciciel wlasciciel, Kwota kwota)
+        {
+            bool result = false;
+            
+            var rachunek = SzukajRachunku(wlasciciel);
+            
+            if (rachunek != null)
+            {
+                result = rachunek.DodajLokate(kwota);
+            }
+
+            return result;
+        }
+
+        public bool ZerwijLokate(Wlasciciel wlasciciel, Lokata lokata)
         {
             return false;
         }
