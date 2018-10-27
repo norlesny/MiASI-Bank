@@ -9,7 +9,21 @@ namespace MiASI_Bank
 
         public bool Zamknij()
         {
-            throw new System.NotImplementedException();
+            var result = true;
+
+            if(Debet != null && Debet.Kwota > 0.0)
+            {
+                result = false;
+            }else if (_kredyty.Any())
+            {
+                result = false;
+            }else if(_lokaty.Any())
+            {
+                // Mo¿emy zamkn¹æ konto kiedy mamy otwarte lokaty??
+                result = false;
+            }
+
+            return result;
         }
 
         public bool DodajLokate(Kwota kwota)
