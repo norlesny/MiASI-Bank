@@ -111,9 +111,13 @@ namespace MiASI_Bank
             return zrodlo.WyplacGotowke(kwota);
         }
 
-        public bool GenerujRaport()
+        public Raport GenerujRaport()
         {
-            return false;
+            var raportowanie = new Raportowanie();
+
+            var raport = raportowanie.GenerujRaport(_produktyBankowe);
+
+            return raport;
         }
 
         public Raport PobierzSaldo(ProduktBankowy produkt)

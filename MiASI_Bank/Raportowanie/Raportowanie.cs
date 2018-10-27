@@ -8,5 +8,16 @@ namespace MiASI_Bank
 
             return raport;
         }
+        public Raport GenerujRaport(IEnumerable<ProduktBankowy> produkty)
+        {
+            var raport = new Raport();
+
+            foreach (var produkt in produkty)
+            {
+                raport.DodajWpis($"{produkt.Numer}:{produkt.Saldo}");
+            }
+
+            return raport;
+        }
     }
 }

@@ -5,7 +5,7 @@
         System.Boolean DodajKredyt(RachunekBankowy rachunek);
         System.Boolean DodajLokate(Wlasciciel wlasciciel, Kwota kwota);
         System.Boolean DodajRachunek(Wlasciciel wlasciciel);
-        System.Boolean GenerujRaport();
+        Raport GenerujRaport();
         Raport PobierzSaldo(ProduktBankowy produkt);
         System.Boolean WplacGotowke(ProduktBankowy cel, Kwota kwota);
         System.Boolean WykonajPrzelew(ProduktBankowy zrodlo, ProduktBankowy cel, Kwota kwota);
