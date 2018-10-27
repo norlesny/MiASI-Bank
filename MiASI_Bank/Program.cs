@@ -7,8 +7,6 @@ namespace MiASI_Bank
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            
-            Console.WriteLine("Hello World!");
         }
     }
 }
