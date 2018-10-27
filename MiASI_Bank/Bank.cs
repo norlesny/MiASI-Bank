@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace MiASI_Bank
 {
-    public class Bank
+    public class Bank : IBank
     {
         #region Pola prywatne
 
