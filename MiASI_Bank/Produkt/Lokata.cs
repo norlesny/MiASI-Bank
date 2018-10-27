@@ -1,6 +1,6 @@
 namespace MiASI_Bank
 {
-    public class Lokata
+    public class Lokata: ProduktBankowy
     {
         
     }

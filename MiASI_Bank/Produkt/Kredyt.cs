@@ -1,6 +1,6 @@
 namespace MiASI_Bank
 {
-    public class RachunekBankowy
+    public class Kredyt : ProduktBankowy
     {
         
     }
