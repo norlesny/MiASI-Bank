@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace MiASI_Bank
 {
     public class Raportowanie

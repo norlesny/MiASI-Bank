@@ -10,9 +10,5 @@ namespace MiASI_Bank
         public Kwota Saldo { get; protected set; }
         public Historia Historia { get; set; }
         public Odsetki Odsetki { get; set; }
-
-        public abstract bool WplacGotowke(Kwota kwota);
-
-        public abstract bool WyplacGotowke(Kwota kwota);
     }
 }

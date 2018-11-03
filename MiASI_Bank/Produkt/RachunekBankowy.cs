@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Linq;
+
 namespace MiASI_Bank
 {
     public class RachunekBankowy : ProduktBankowy
@@ -11,7 +14,7 @@ namespace MiASI_Bank
         {
             var result = true;
 
-            if(Debet != null && Debet.Kwota > 0.0)
+            if(Debet != null && Debet.Kwota.Wartosc > 0.0)
             {
                 result = false;
             }else if (_kredyty.Any())
@@ -65,7 +68,7 @@ namespace MiASI_Bank
             return result;
         }
 
-        public override bool WplacGotowke(Kwota kwota)
+        public bool WplacGotowke(Kwota kwota)
         {
             if(Debet != null)
             {
@@ -89,7 +92,7 @@ namespace MiASI_Bank
             return true;
         }
 
-        public override bool WyplacGotowke(Kwota kwota)
+        public bool WyplacGotowke(Kwota kwota)
         {
             var result = false;
 
@@ -98,7 +101,7 @@ namespace MiASI_Bank
                 Saldo.Wartosc -= kwota.Wartosc;
                 result = true;
             }
-            else if(Debet != null && Saldo.Wartosc + DostepnyDebet >= kwota.Wartosc)
+            else if(Debet != null && Saldo.Wartosc + Debet.DostepnyDebet.Wartosc >= kwota.Wartosc)
             {
                 var debet = kwota.Wartosc - Saldo.Wartosc;
                 Saldo.Wartosc = 0.0;

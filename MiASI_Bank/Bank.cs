@@ -86,14 +86,14 @@ namespace MiASI_Bank
             return result;
         }
 
-        public bool WykonajPrzelew(ProduktBankowy zrodlo, ProduktBankowy cel, Kwota kwota)
+        public bool WykonajPrzelew(RachunekBankowy zrodlo, RachunekBankowy cel, Kwota kwota)
         {
             bool result = false;
 
             if(zrodlo.Saldo.Wartosc >= kwota.Wartosc)
             {
-                WyplacGotowke(zrodlo, kwota.Wartosc);
-                WplacGotowke(cel, kwota.Wartosc);
+                WyplacGotowke(zrodlo, kwota);
+                WplacGotowke(cel, kwota);
 
                 result = true;
             }
@@ -101,12 +101,12 @@ namespace MiASI_Bank
             return result;
         }
 
-        public bool WplacGotowke(ProduktBankowy cel, Kwota kwota)
+        public bool WplacGotowke(RachunekBankowy cel, Kwota kwota)
         {
             return cel.WplacGotowke(kwota);
         }
 
-        public bool WyplacGotowke(ProduktBankowy zrodlo, Kwota kwota)
+        public bool WyplacGotowke(RachunekBankowy zrodlo, Kwota kwota)
         {
             return zrodlo.WyplacGotowke(kwota);
         }
@@ -120,7 +120,7 @@ namespace MiASI_Bank
             return raport;
         }
 
-        public Raport PobierzSaldo(ProduktBankowy produkt)
+        public Raport PobierzSaldo(RachunekBankowy produkt)
         {
             var raportowanie = new Raportowanie();
 

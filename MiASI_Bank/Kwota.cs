@@ -6,7 +6,7 @@ namespace MiASI_Bank
 
         public override string ToString()
         {
-            return Wartosc;
+            return Wartosc.ToString();
         }
     }
 }

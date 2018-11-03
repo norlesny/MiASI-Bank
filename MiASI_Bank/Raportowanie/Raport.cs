@@ -1,3 +1,5 @@
+using System.Text;
+
 namespace MiASI_Bank
 {
     public class Raport
@@ -16,7 +18,7 @@ namespace MiASI_Bank
 
         public override string ToString()
         {
-            return _wpisy.Build();
+            return _wpisy.ToString();
         }
     }
 }
