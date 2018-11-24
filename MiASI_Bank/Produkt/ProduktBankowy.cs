@@ -2,7 +2,7 @@ using System;
 
 namespace MiASI_Bank
 {
-    public abstract class ProduktBankowy
+    public abstract class ProduktBankowy : IProduktBankowy
     {
         public NumerProduktu Numer { get; set; }
         public Wlasciciel Wlasciciel { get; set; }

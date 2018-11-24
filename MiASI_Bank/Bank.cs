@@ -6,8 +6,18 @@ namespace MiASI_Bank
     {
         #region Pola prywatne
 
-        private List<ProduktBankowy> _produktyBankowe = new List<ProduktBankowy>();
+        private List<IProduktBankowy> _produktyBankowe = new List<IProduktBankowy>();
+        private readonly IFabrykaRachunkow _fabrykaRachunkow;
 
+        #endregion
+        
+        #region Constructors
+
+        public Bank(IFabrykaRachunkow fabrykaRachunkow)
+        {
+            _fabrykaRachunkow = fabrykaRachunkow;
+        }
+        
         #endregion
 
         #region Wlasciwosci
@@ -39,8 +49,8 @@ namespace MiASI_Bank
 
             return result;
         }
-
-        public bool DodajRachunek(Wlasciciel wlasciciel, out RachunekBankowy rachunek)
+        
+        public bool DodajRachunek(Wlasciciel wlasciciel, out IRachunekBankowy rachunek)
         {
             bool result = false;
 
@@ -48,7 +58,7 @@ namespace MiASI_Bank
 
             if (rachunek == null)
             {
-                rachunek = new RachunekBankowy {Wlasciciel = wlasciciel};
+                rachunek = _fabrykaRachunkow.StworzRachunek(wlasciciel);
 
                 _produktyBankowe.Add(rachunek);
 
@@ -116,7 +126,7 @@ namespace MiASI_Bank
             return result;
         }
 
-        public bool WykonajPrzelew(RachunekBankowy zrodlo, RachunekBankowy cel, Kwota kwota)
+        public bool WykonajPrzelew(IRachunekBankowy zrodlo, IRachunekBankowy cel, Kwota kwota)
         {
             bool result = false;
 
@@ -131,12 +141,12 @@ namespace MiASI_Bank
             return result;
         }
 
-        public bool WplacGotowke(RachunekBankowy cel, Kwota kwota)
+        public bool WplacGotowke(IRachunekBankowy cel, Kwota kwota)
         {
             return cel.WplacGotowke(kwota);
         }
 
-        public bool WyplacGotowke(RachunekBankowy zrodlo, Kwota kwota)
+        public bool WyplacGotowke(IRachunekBankowy zrodlo, Kwota kwota)
         {
             return zrodlo.WyplacGotowke(kwota);
         }
@@ -150,7 +160,7 @@ namespace MiASI_Bank
             return raport;
         }
 
-        public Raport PobierzSaldo(RachunekBankowy produkt)
+        public Raport PobierzSaldo(IRachunekBankowy produkt)
         {
             var raportowanie = new Raportowanie();
 
@@ -161,7 +171,7 @@ namespace MiASI_Bank
 
         #region Szukanie
 
-        private RachunekBankowy SzukajRachunku(Wlasciciel wlasciciel)
+        private IRachunekBankowy SzukajRachunku(Wlasciciel wlasciciel)
         {
             RachunekBankowy result;
 
@@ -173,9 +183,9 @@ namespace MiASI_Bank
         }
 
 
-        private ProduktBankowy SzukajProduktu(NumerProduktu numerProduktu)
+        private IProduktBankowy SzukajProduktu(NumerProduktu numerProduktu)
         {
-            ProduktBankowy result;
+            IProduktBankowy result;
 
             result = _produktyBankowe.Find(p => p.Numer == numerProduktu);
 

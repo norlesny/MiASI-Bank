@@ -10,6 +10,7 @@ namespace MiASI_BankTest
         
         private IBank _bank;
         private Wlasciciel _wlascicielTestowy;
+        private FabrykaRachunkow _fabrykaRachunkow;
         
         #endregion
         
@@ -18,7 +19,8 @@ namespace MiASI_BankTest
         //Setup
         public UnitTestBank()
         {
-            _bank = new Bank();
+            _fabrykaRachunkow = new FabrykaRachunkow();
+            _bank = new Bank(_fabrykaRachunkow);
             _wlascicielTestowy = new Wlasciciel("Test");
         }
 
@@ -26,7 +28,7 @@ namespace MiASI_BankTest
 
         #region Helpers
         
-        private RachunekBankowy DodajRachunekTestowy()
+        private IRachunekBankowy DodajRachunekTestowy()
         {
             var kwota = new Kwota(100);
                 
@@ -40,7 +42,7 @@ namespace MiASI_BankTest
         #endregion
         
         [Fact]
-        public void Test_DodajRachunek_Powinien_Zakonczyc_Sie_Sukcesem()
+        public void Test_DodajRachunek_Powinien_Zwiekszyc_Liczbe_Rachunkow()
         {
             //Arrange
             
@@ -81,7 +83,6 @@ namespace MiASI_BankTest
         public void Test_DodajLokate_Powinna_Zwiekszyc_Liczbe_Lokat()
         {
             //Arrange
-            
             var kwota = new Kwota(100);
             
             DodajRachunekTestowy();
@@ -98,7 +99,6 @@ namespace MiASI_BankTest
             Assert.True(result, "Dodanie rachunku nie powiodlo sie");
             Assert.Equal(spodziewanaLiczbaLokat, liczbaLokat);
         }
-
         
         
         [Fact]
@@ -119,5 +119,16 @@ namespace MiASI_BankTest
             Assert.True(result, "Zamkniecie rachunku nie powiodlo sie");
             Assert.Equal(spodziewanaLiczbaLokat, liczbaLokat);
         }
+
+        [Fact]
+        public void Test_WplacGotowke_Powinien_WplacicGotowkeNaRachunek()
+        {
+            //var rachunekTestowy = DodajRachunekTestowy();
+
+            //_bank.WplacGotowke();
+
+
+        }
+        
     }
 }

@@ -4,10 +4,11 @@ using System.Linq;
 
 namespace MiASI_Bank
 {
-    public class RachunekBankowy : ProduktBankowy
+    public class RachunekBankowy : ProduktBankowy, IRachunekBankowy
     {
-        public RachunekBankowy()
+        public RachunekBankowy(Wlasciciel wlasciciel)
         {
+            Wlasciciel = wlasciciel;
             Saldo = new Kwota(0);
             Numer = new NumerProduktu();
             

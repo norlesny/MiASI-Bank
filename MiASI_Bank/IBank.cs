@@ -6,12 +6,12 @@ namespace MiASI_Bank
     {
         bool DodajKredyt(Wlasciciel wlasciciel, Kwota kwota);
         bool DodajLokate(Wlasciciel wlasciciel, Kwota kwota, out Lokata lokata);
-        bool DodajRachunek(Wlasciciel wlasciciel, out RachunekBankowy rachunek);
+        bool DodajRachunek(Wlasciciel wlasciciel, out IRachunekBankowy rachunek);
         Raport GenerujRaport();
-        Raport PobierzSaldo(RachunekBankowy produkt);
-        bool WplacGotowke(RachunekBankowy cel, Kwota kwota);
-        bool WykonajPrzelew(RachunekBankowy zrodlo, RachunekBankowy cel, Kwota kwota);
-        bool WyplacGotowke(RachunekBankowy zrodlo, Kwota kwota);
+        Raport PobierzSaldo(IRachunekBankowy produkt);
+        bool WplacGotowke(IRachunekBankowy cel, Kwota kwota);
+        bool WykonajPrzelew(IRachunekBankowy zrodlo, IRachunekBankowy cel, Kwota kwota);
+        bool WyplacGotowke(IRachunekBankowy zrodlo, Kwota kwota);
         bool ZamknijRachunek(Wlasciciel wlasciciel);
         bool ZerwijLokate(Wlasciciel wlasciciel, NumerProduktu numerProduktu);
         
