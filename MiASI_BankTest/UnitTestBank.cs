@@ -4,25 +4,51 @@ using Xunit;
 
 namespace MiASI_BankTest
 {
-    public class UnitTestBank
+    public class UnitTestBank : TestsBase
     {
-        private IBank _bank;
+        #region Private fields
         
+        private IBank _bank;
+        private Wlasciciel _wlascicielTestowy;
+        
+        #endregion
+        
+        #region Setup
+        
+        //Setup
         public UnitTestBank()
         {
             _bank = new Bank();
+            _wlascicielTestowy = new Wlasciciel("Test");
         }
+
+        #endregion
+
+        #region Helpers
+        
+        private RachunekBankowy DodajRachunekTestowy()
+        {
+            var kwota = new Kwota(100);
+                
+            _bank.DodajRachunek(_wlascicielTestowy, out var rachunek);
+                
+            rachunek.WplacGotowke(kwota);
+                
+            return rachunek;    
+        }
+        
+        #endregion
         
         [Fact]
         public void Test_DodajRachunek_Powinien_Zakonczyc_Sie_Sukcesem()
         {
             //Arrange
-            Wlasciciel wlasciciel = new Wlasciciel("test");
+            
             _bank.PodajLiczbeRachunkow(out var spodziewanaLiczbaRachunkow);
             spodziewanaLiczbaRachunkow++;
             
             //Act
-            var result = _bank.DodajRachunek(wlasciciel, out var rachunek);
+            var result = _bank.DodajRachunek(_wlascicielTestowy, out var rachunek);
             
             _bank.PodajLiczbeRachunkow(out var liczbaRachunkow);
                 
@@ -36,13 +62,13 @@ namespace MiASI_BankTest
         public void Test_ZamknijRachunek_Powinien_Zmniejszyc_Liczbe_Rachunkow()
         {
             //Arrange
-            Wlasciciel wlasciciel = new Wlasciciel("test");
-            _bank.DodajRachunek(wlasciciel, out _);
+            DodajRachunekTestowy();
+            
             _bank.PodajLiczbeRachunkow(out var spodziewanaLiczbaRachunkow);
             spodziewanaLiczbaRachunkow--;
             
             //Act
-            var result = _bank.ZamknijRachunek(wlasciciel);
+            var result = _bank.ZamknijRachunek(_wlascicielTestowy);
             
             _bank.PodajLiczbeRachunkow(out var liczbaRachunkow);
             
@@ -55,38 +81,39 @@ namespace MiASI_BankTest
         public void Test_DodajLokate_Powinna_Zwiekszyc_Liczbe_Lokat()
         {
             //Arrange
-            var wlasciciel = new Wlasciciel("test");
+            
             var kwota = new Kwota(100);
-            _bank.DodajRachunek(wlasciciel, out var rachunek);
-            rachunek.WplacGotowke(kwota);
-            _bank.PodajLiczbeLokat(wlasciciel, out var spodziewanaLiczbaLokat);
+            
+            DodajRachunekTestowy();
+            
+            _bank.PodajLiczbeLokat(_wlascicielTestowy, out var spodziewanaLiczbaLokat);
             spodziewanaLiczbaLokat++;
             
             //Act
-            var result = _bank.DodajLokate(wlasciciel, kwota, out _);
+            var result = _bank.DodajLokate(_wlascicielTestowy, kwota, out _);
             
-            _bank.PodajLiczbeLokat(wlasciciel, out var liczbaLokat);
+            _bank.PodajLiczbeLokat(_wlascicielTestowy, out var liczbaLokat);
                 
             //Verify
             Assert.True(result, "Dodanie rachunku nie powiodlo sie");
             Assert.Equal(spodziewanaLiczbaLokat, liczbaLokat);
         }
+
+        
         
         [Fact]
         public void Test_ZerwijLokate_Powinien_Zmniejszyc_Liczbe_Lokat()
         {
             //Arrange
             var kwota = new Kwota(100);
-            Wlasciciel wlasciciel = new Wlasciciel("test");
-            _bank.DodajRachunek(wlasciciel, out var rachunek);
-            rachunek.WplacGotowke(kwota);
-            _bank.DodajLokate(wlasciciel, kwota, out var lokata);
-            _bank.PodajLiczbeLokat(wlasciciel, out var spodziewanaLiczbaLokat);
+            DodajRachunekTestowy();
+            _bank.DodajLokate(_wlascicielTestowy, kwota, out var lokata);
+            _bank.PodajLiczbeLokat(_wlascicielTestowy, out var spodziewanaLiczbaLokat);
             spodziewanaLiczbaLokat--;
             
             //Act
-            var result = _bank.ZerwijLokate(wlasciciel, lokata.Numer);
-            _bank.PodajLiczbeLokat(wlasciciel, out var liczbaLokat);
+            var result = _bank.ZerwijLokate(_wlascicielTestowy, lokata.Numer);
+            _bank.PodajLiczbeLokat(_wlascicielTestowy, out var liczbaLokat);
             
             //Verify
             Assert.True(result, "Zamkniecie rachunku nie powiodlo sie");
