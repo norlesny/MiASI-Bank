@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiASI_Bank", "MiASI_Bank\MiASI_Bank.csproj", "{FF28DA49-4735-4F75-80FA-5BD36B336032}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiASI_BankTest", "MiASI_BankTest\MiASI_BankTest.csproj", "{12140607-429B-4637-91E2-887607F08F26}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{FF28DA49-4735-4F75-80FA-5BD36B336032}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF28DA49-4735-4F75-80FA-5BD36B336032}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF28DA49-4735-4F75-80FA-5BD36B336032}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12140607-429B-4637-91E2-887607F08F26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12140607-429B-4637-91E2-887607F08F26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12140607-429B-4637-91E2-887607F08F26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12140607-429B-4637-91E2-887607F08F26}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

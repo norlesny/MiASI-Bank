@@ -10,13 +10,41 @@ namespace MiASI_Bank
 
         #endregion
 
+        #region Wlasciwosci
+
+        public int LiczbaRachunkow => _produktyBankowe.Count;
+
+        #endregion
+        
         #region Metody
 
-        public bool DodajRachunek(Wlasciciel wlasciciel)
+        public bool PodajLiczbeRachunkow(out int liczbaRachunkow)
+        {
+            liczbaRachunkow = LiczbaRachunkow;
+
+            return true;
+        }
+
+        public bool PodajLiczbeLokat(Wlasciciel wlasciciel, out int liczbaLokat)
+        {
+            bool result = false;
+            var rachunek = SzukajRachunku(wlasciciel);
+
+            liczbaLokat = 0;
+
+            if (rachunek != null)
+            {
+                result = rachunek.PodajLiczbeLokat(out liczbaLokat);
+            }
+
+            return result;
+        }
+
+        public bool DodajRachunek(Wlasciciel wlasciciel, out RachunekBankowy rachunek)
         {
             bool result = false;
 
-            var rachunek = SzukajRachunku(wlasciciel);
+            rachunek = SzukajRachunku(wlasciciel);
 
             if (rachunek == null)
             {
@@ -39,35 +67,37 @@ namespace MiASI_Bank
             if (rachunek != null)
             {
                 result = rachunek.Zamknij();
+
+                if (result)
+                {
+                    result = _produktyBankowe.Remove(rachunek);
+                }
             }
 
             return result;
         }
 
-        public bool DodajLokate(Wlasciciel wlasciciel, Kwota kwota)
+        public bool DodajLokate(Wlasciciel wlasciciel, Kwota kwota, out Lokata lokata)
         {
             bool result = false;
 
             var rachunek = SzukajRachunku(wlasciciel);
 
+            lokata = null;
+
             if (rachunek != null)
             {
-                result = rachunek.DodajLokate(kwota);
+                result = rachunek.DodajLokate(kwota, out lokata);
             }
 
             return result;
         }
 
-        public bool ZerwijLokate(NumerProduktu numerProduktu)
+        public bool ZerwijLokate(Wlasciciel wlasciciel, NumerProduktu numerProduktu)
         {
-            bool result = false;
+            var rachunek = SzukajRachunku(wlasciciel);
 
-            var lokata = SzukajProduktu(numerProduktu) as Lokata;
-
-            if (lokata != null)
-            {
-                result = lokata.Zerwij();
-            }
+            var result = rachunek.ZerwijLokate(numerProduktu);
 
             return result;
         }

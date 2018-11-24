@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -5,6 +6,16 @@ namespace MiASI_Bank
 {
     public class RachunekBankowy : ProduktBankowy
     {
+        public RachunekBankowy()
+        {
+            Saldo = new Kwota(0);
+            Numer = new NumerProduktu();
+            
+            DataZalozenia = DateTime.Now;
+            Historia = new Historia();
+            Odsetki = new Odsetki();
+        }
+        
         public Debet Debet { get; private set; }
 
         private IList<Lokata> _lokaty = new List<Lokata>();
@@ -22,20 +33,25 @@ namespace MiASI_Bank
                 result = false;
             }else if(_lokaty.Any())
             {
-                // Mo¿emy zamkn¹æ konto kiedy mamy otwarte lokaty??
+                // Mo?emy zamkn?? konto kiedy mamy otwarte lokaty??
                 result = false;
             }
 
             return result;
         }
 
-        public bool DodajLokate(Kwota kwota)
+        public bool DodajLokate(Kwota kwota, out Lokata lokata)
         {
             var result = false;
 
+            lokata = null;
+            
             if(Saldo.Wartosc >= kwota.Wartosc && WyplacGotowke(kwota))
             {
-                _lokaty.Add(new Lokata(kwota));
+                lokata = new Lokata(this, kwota);
+                
+                _lokaty.Add(lokata);
+                
                 result = true;
             }
 
@@ -66,6 +82,13 @@ namespace MiASI_Bank
             }
 
             return result;
+        }
+
+        public bool PodajLiczbeLokat(out int liczbaLokat)
+        {
+            liczbaLokat = _lokaty.Count;
+
+            return true;
         }
 
         public bool WplacGotowke(Kwota kwota)
@@ -109,6 +132,22 @@ namespace MiASI_Bank
                 Debet.Kwota.Wartosc += debet;
 
                 result = true;
+            }
+
+            return result;
+        }
+
+        public bool ZerwijLokate(NumerProduktu numerProduktu)
+        {
+            bool result = false;
+            var lokataDoZerwania = _lokaty.FirstOrDefault(lokata => lokata.Numer == numerProduktu);
+
+            if (lokataDoZerwania != null)
+            {
+                if (lokataDoZerwania.Zerwij())
+                {
+                    result =_lokaty.Remove(lokataDoZerwania);
+                }
             }
 
             return result;
