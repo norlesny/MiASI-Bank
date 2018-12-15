@@ -2,6 +2,8 @@
 using Tharga.Toolkit.Console;
 using Tharga.Toolkit.Console.Commands;
 using Tharga.Toolkit.Console.Consoles;
+using Tharga.Toolkit.Console.Entities;
+using Tharga.Toolkit.Console.Interfaces;
 
 namespace MiASI_Bank
 {
@@ -23,7 +25,9 @@ namespace MiASI_Bank
 
 		private static void Main(string[] args)
 		{
-			using (var console = new ClientConsole())
+			var config = new ConsoleConfiguration();
+			config.SplashScreen = "Best Bank ever";
+			using (var console = new ClientConsole(config))
 			{
 				var rootCommand = new RootCommand(console);
 
