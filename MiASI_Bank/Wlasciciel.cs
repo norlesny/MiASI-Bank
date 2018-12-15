@@ -1,13 +1,16 @@
 namespace MiASI_Bank
 {
-    public class Wlasciciel
-    {
-        public string Name { get; }
-        public int Id { get; }
+	public class Wlasciciel : IWlasciciel
+	{
+		public string Name { get; }
+		public int Id { get; }
 
-        public Wlasciciel(string name)
-        {
-            Name = name;
-        }
-    }
+		private static int idCounter = 1;
+		
+		public Wlasciciel(string name)
+		{
+			Name = name;
+			Id = idCounter++;
+		}
+	}
 }

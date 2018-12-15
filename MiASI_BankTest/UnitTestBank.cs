@@ -10,7 +10,7 @@ namespace MiASI_BankTest
         #region Private fields
         
         private IBank _bank;
-        private IWlasciciel _wlascicielTestowy;
+        private Wlasciciel _wlascicielTestowy;
         private FabrykaRachunkow _fabrykaRachunkow;
         
         #endregion

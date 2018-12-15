@@ -35,7 +35,7 @@ namespace MiASI_Bank
             return true;
         }
 
-        public bool PodajLiczbeLokat(Wlasciciel wlasciciel, out int liczbaLokat)
+        public bool PodajLiczbeLokat(IWlasciciel wlasciciel, out int liczbaLokat)
         {
             bool result = false;
             var rachunek = SzukajRachunku(wlasciciel);
@@ -50,7 +50,7 @@ namespace MiASI_Bank
             return result;
         }
         
-        public bool DodajRachunek(Wlasciciel wlasciciel, out IRachunekBankowy rachunek)
+        public bool DodajRachunek(IWlasciciel wlasciciel, out IRachunekBankowy rachunek)
         {
             bool result = false;
 
@@ -68,7 +68,7 @@ namespace MiASI_Bank
             return result;
         }
 
-        public bool ZamknijRachunek(Wlasciciel wlasciciel)
+        public bool ZamknijRachunek(IWlasciciel wlasciciel)
         {
             bool result = false;
 
@@ -87,7 +87,7 @@ namespace MiASI_Bank
             return result;
         }
 
-        public bool DodajLokate(Wlasciciel wlasciciel, Kwota kwota, out Lokata lokata)
+        public bool DodajLokate(IWlasciciel wlasciciel, Kwota kwota, out Lokata lokata)
         {
             bool result = false;
 
@@ -103,7 +103,7 @@ namespace MiASI_Bank
             return result;
         }
 
-        public bool ZerwijLokate(Wlasciciel wlasciciel, NumerProduktu numerProduktu)
+        public bool ZerwijLokate(IWlasciciel wlasciciel, NumerProduktu numerProduktu)
         {
             var rachunek = SzukajRachunku(wlasciciel);
 
@@ -112,7 +112,7 @@ namespace MiASI_Bank
             return result;
         }
 
-        public bool DodajKredyt(Wlasciciel wlasciciel, Kwota kwota)
+        public bool DodajKredyt(IWlasciciel wlasciciel, Kwota kwota)
         {
             bool result = false;
 
@@ -171,15 +171,10 @@ namespace MiASI_Bank
 
         #region Szukanie
 
-        private IRachunekBankowy SzukajRachunku(Wlasciciel wlasciciel)
+        private IRachunekBankowy SzukajRachunku(IWlasciciel wlasciciel)
         {
-            RachunekBankowy result;
-
-            result =
-                _produktyBankowe.Find(p => p is RachunekBankowy rachunek && rachunek.Wlasciciel == wlasciciel) as
-                    RachunekBankowy;
-
-            return result;
+            return _produktyBankowe.Find(p => p is IRachunekBankowy rachunek && rachunek.Wlasciciel.Id == wlasciciel.Id)
+                as IRachunekBankowy;
         }
 
 

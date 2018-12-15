@@ -4,18 +4,18 @@ namespace MiASI_Bank
 {
     public interface IBank
     {
-        bool DodajKredyt(Wlasciciel wlasciciel, Kwota kwota);
-        bool DodajLokate(Wlasciciel wlasciciel, Kwota kwota, out Lokata lokata);
-        bool DodajRachunek(Wlasciciel wlasciciel, out IRachunekBankowy rachunek);
+        bool DodajKredyt(IWlasciciel wlasciciel, Kwota kwota);
+        bool DodajLokate(IWlasciciel wlasciciel, Kwota kwota, out Lokata lokata);
+        bool DodajRachunek(IWlasciciel wlasciciel, out IRachunekBankowy rachunek);
         Raport GenerujRaport();
         Raport PobierzSaldo(IRachunekBankowy produkt);
         bool WplacGotowke(IRachunekBankowy cel, Kwota kwota);
         bool WykonajPrzelew(IRachunekBankowy zrodlo, IRachunekBankowy cel, Kwota kwota);
         bool WyplacGotowke(IRachunekBankowy zrodlo, Kwota kwota);
-        bool ZamknijRachunek(Wlasciciel wlasciciel);
-        bool ZerwijLokate(Wlasciciel wlasciciel, NumerProduktu numerProduktu);
+        bool ZamknijRachunek(IWlasciciel wlasciciel);
+        bool ZerwijLokate(IWlasciciel wlasciciel, NumerProduktu numerProduktu);
         
         bool PodajLiczbeRachunkow(out int liczbaRachunkow);
-        bool PodajLiczbeLokat(Wlasciciel wlasciciel, out int liczbaLokat);
+        bool PodajLiczbeLokat(IWlasciciel wlasciciel, out int liczbaLokat);
     }
 }
