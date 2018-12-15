@@ -47,5 +47,10 @@ namespace MiASI_Bank
 
 			return bank.DodajRachunek(Konto, out _);
 		}
+
+		public IReadOnlyCollection<IWlasciciel> PobierzKonta()
+		{
+			return (IReadOnlyCollection<IWlasciciel>) accounts;
+		}
 	}
 }

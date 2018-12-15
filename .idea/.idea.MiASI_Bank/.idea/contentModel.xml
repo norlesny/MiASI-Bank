@@ -21,7 +21,9 @@
           <e p="BaseBankCommand.cs" t="Include" />
           <e p="Commands" t="Include">
             <e p="AktualneKontoCommand.cs" t="Include" />
+            <e p="DodajRachunekCommand.cs" t="Include" />
             <e p="PodajLiczbeRachunkowCommand.cs" t="Include" />
+            <e p="WyswietlKontaCommand.cs" t="Include" />
             <e p="ZalozKontoCommand.cs" t="Include" />
             <e p="ZmienKontoCommand.cs" t="Include" />
           </e>

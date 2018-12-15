@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace MiASI_Bank
 {
 	public interface IBankAccessor
@@ -10,5 +12,7 @@ namespace MiASI_Bank
 		bool PodajLiczbeRachunkow(out int liczbaRachunkow);
 		
 		bool DodajRachunek();
+
+		IReadOnlyCollection<IWlasciciel> PobierzKonta();
 	}
 }
