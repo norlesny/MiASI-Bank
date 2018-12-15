@@ -10,7 +10,7 @@ namespace MiASI_BankTest
         #region Private fields
         
         private IBank _bank;
-        private Wlasciciel _wlascicielTestowy;
+        private IWlasciciel _wlascicielTestowy;
         private FabrykaRachunkow _fabrykaRachunkow;
         
         #endregion
@@ -65,20 +65,23 @@ namespace MiASI_BankTest
         public void ZamknijRachunek_Powinien_ZamknacWczesniejStworzonyRachunek()
         {
             // Arrange
+            var wlasciciel = new Wlasciciel("test wlasciciel");
+
             var mockRachunek = new Mock<IRachunekBankowy>();
+            mockRachunek.Setup(r => r.Wlasciciel).Returns(wlasciciel);
 
             var factoryMock = new Mock<IFabrykaRachunkow>();
-            factoryMock.Setup(factory => factory.StworzRachunek(It.IsAny<Wlasciciel>())).Returns(mockRachunek.Object);
+            factoryMock.Setup(factory => factory.StworzRachunek(It.IsAny<IWlasciciel>())).Returns(mockRachunek.Object);
 
             var bank = new Bank(factoryMock.Object);
 
-            var wlasciciel = new Wlasciciel("test wlasciciel");
             bank.DodajRachunek(wlasciciel, out IRachunekBankowy rachunek);
 
             // Act
             bank.ZamknijRachunek(wlasciciel);
             
             // Assert
+            Assert.True(mockRachunek.Object == rachunek);
             mockRachunek.Verify(r => r.Zamknij(), Times.Once);
         }
         
