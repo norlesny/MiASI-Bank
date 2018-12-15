@@ -65,20 +65,21 @@ namespace MiASI_BankTest
         public void ZamknijRachunek_Powinien_ZamknacWczesniejStworzonyRachunek()
         {
             // Arrange
-            var wlasciciel = new Wlasciciel("test wlasciciel");
+            var mockWlasciciel = new Mock<IWlasciciel>();
+            mockWlasciciel.Setup(wlasciciel => wlasciciel.Id).Returns(121);
 
             var mockRachunek = new Mock<IRachunekBankowy>();
-            mockRachunek.Setup(r => r.Wlasciciel).Returns(wlasciciel);
+            mockRachunek.Setup(r => r.Wlasciciel).Returns(mockWlasciciel.Object);
 
             var factoryMock = new Mock<IFabrykaRachunkow>();
             factoryMock.Setup(factory => factory.StworzRachunek(It.IsAny<IWlasciciel>())).Returns(mockRachunek.Object);
 
             var bank = new Bank(factoryMock.Object);
 
-            bank.DodajRachunek(wlasciciel, out IRachunekBankowy rachunek);
+            bank.DodajRachunek(mockWlasciciel.Object, out IRachunekBankowy rachunek);
 
             // Act
-            bank.ZamknijRachunek(wlasciciel);
+            bank.ZamknijRachunek(mockWlasciciel.Object);
             
             // Assert
             Assert.True(mockRachunek.Object == rachunek);

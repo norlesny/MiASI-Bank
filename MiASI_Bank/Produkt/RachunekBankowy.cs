@@ -6,7 +6,7 @@ namespace MiASI_Bank
 {
     public class RachunekBankowy : ProduktBankowy, IRachunekBankowy
     {
-        public RachunekBankowy(Wlasciciel wlasciciel)
+        public RachunekBankowy(IWlasciciel wlasciciel)
         {
             Wlasciciel = wlasciciel;
             Saldo = new Kwota(0);
