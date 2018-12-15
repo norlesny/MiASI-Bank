@@ -1,5 +1,6 @@
 using System;
 using MiASI_Bank;
+using Moq;
 using Xunit;
 
 namespace MiASI_BankTest
@@ -58,6 +59,27 @@ namespace MiASI_BankTest
             Assert.True(result, "Dodanie rachunku nie powiodlo sie");
             Assert.NotNull(rachunek);
             Assert.Equal(spodziewanaLiczbaRachunkow, liczbaRachunkow);
+        }
+
+        [Fact]
+        public void ZamknijRachunek_Powinien_ZamknacWczesniejStworzonyRachunek()
+        {
+            // Arrange
+            var mockRachunek = new Mock<IRachunekBankowy>();
+
+            var factoryMock = new Mock<IFabrykaRachunkow>();
+            factoryMock.Setup(factory => factory.StworzRachunek(It.IsAny<Wlasciciel>())).Returns(mockRachunek.Object);
+
+            var bank = new Bank(factoryMock.Object);
+
+            var wlasciciel = new Wlasciciel("test wlasciciel");
+            bank.DodajRachunek(wlasciciel, out IRachunekBankowy rachunek);
+
+            // Act
+            bank.ZamknijRachunek(wlasciciel);
+            
+            // Assert
+            mockRachunek.Verify(r => r.Zamknij(), Times.Once);
         }
         
         [Fact]
