@@ -5,11 +5,8 @@ namespace MiASI_Bank.InterfejsBanku
 {
 	public class InterfejsBanku : ContainerCommandBase
 	{
-		public InterfejsBanku() : base("bank")
+		public InterfejsBanku(IBankAccessor bank) : base("bank")
 		{
-			// TODO: Inhect
-			var bank = new BankAccessor();
-
 			RegisterCommand(new PodajLiczbeRachunkowCommand(bank));
 			RegisterCommand(new ZalozKontoCommand(bank));
 			RegisterCommand(new AktualneKontoCommand(bank));

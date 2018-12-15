@@ -7,10 +7,9 @@ namespace MiASI_Bank
 	{
 		private readonly ICollection<IWlasciciel> accounts;
 
-		public BankAccessor()
+		public BankAccessor(IBank bank)
 		{
-			// TODO: Inject
-			Bank = new Bank(new FabrykaRachunkow());
+			Bank = bank;
 
 			accounts = new List<IWlasciciel>();
 		}
