@@ -11,6 +11,7 @@ namespace MiASI_Bank.InterfejsBanku
 			RegisterCommand(new ZalozKontoCommand(bank));
 			RegisterCommand(new AktualneKontoCommand(bank));
 			RegisterCommand(new ZmienKontoCommand(bank));
+			RegisterCommand(new DodajRachunekCommand(bank));
 		}
 	}
 }

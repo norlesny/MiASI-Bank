@@ -7,15 +7,16 @@ namespace MiASI_Bank
 	{
 		private readonly ICollection<IWlasciciel> accounts;
 
+		private readonly IBank bank;
+
 		public BankAccessor(IBank bank)
 		{
-			Bank = bank;
+			this.bank = bank;
 
 			accounts = new List<IWlasciciel>();
 		}
 
 		public IWlasciciel Konto { get; set; }
-		public IBank Bank { get; }
 
 		public bool ZmienKonto(string name)
 		{
@@ -30,6 +31,21 @@ namespace MiASI_Bank
 			var wlasciciel = new Wlasciciel(name);
 			accounts.Add(wlasciciel);
 			Konto = wlasciciel;
+		}
+
+		public bool PodajLiczbeRachunkow(out int liczbaRachunkow)
+		{
+			return bank.PodajLiczbeRachunkow(out liczbaRachunkow);
+		}
+
+		public bool DodajRachunek()
+		{
+			if (Konto == null)
+			{
+				return false;
+			}
+
+			return bank.DodajRachunek(Konto, out _);
 		}
 	}
 }

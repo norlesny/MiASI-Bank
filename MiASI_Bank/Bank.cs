@@ -49,7 +49,12 @@ namespace MiASI_Bank
 
             return result;
         }
-        
+
+        public IRachunekBankowy PobierzRachunek(IWlasciciel wlasciciel)
+        {
+            return SzukajRachunku(wlasciciel);
+        }
+
         public bool DodajRachunek(IWlasciciel wlasciciel, out IRachunekBankowy rachunek)
         {
             bool result = false;

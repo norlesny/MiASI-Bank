@@ -17,5 +17,7 @@ namespace MiASI_Bank
         
         bool PodajLiczbeRachunkow(out int liczbaRachunkow);
         bool PodajLiczbeLokat(IWlasciciel wlasciciel, out int liczbaLokat);
+
+        IRachunekBankowy PobierzRachunek(IWlasciciel wlasciciel);
     }
 }

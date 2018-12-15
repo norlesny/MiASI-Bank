@@ -9,7 +9,7 @@ namespace MiASI_Bank.InterfejsBanku.Commands
 
 		public override void Invoke(string[] param)
 		{
-			bank.Bank.PodajLiczbeRachunkow(out int count);
+			bank.PodajLiczbeRachunkow(out int count);
 			Console.WriteLine($"Liczba znalezionych rachunków: {count}");
 		}
 	}
