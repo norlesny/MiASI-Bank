@@ -12,31 +12,32 @@ namespace MiASI_Bank
 {
 	internal class Program
 	{
-		private static readonly Container container;
+		private static readonly Container Container;
 
 		static Program()
 		{
-			container = new Container();
+			Container = new Container();
 
-			container.Register<IBankAccessor, BankAccessor>();
-			container.Register<IBank, Bank>();
-			container.Register<IFabrykaRachunkow, FabrykaRachunkow>();
-			container.Register<InterfejsBanku.InterfejsBanku>();
+			Container.Register<IBankAccessor, BankAccessor>();
+			Container.Register<IBank, Bank>();
+			Container.Register<IFabrykaRachunkow, FabrykaRachunkow>();
+			Container.Register<Kontener.InterfejsBanku>();
 			
-			container.Verify();
+			Container.Verify();
 		}
 
 		private static void Main(string[] args)
 		{
-			var config = new ConsoleConfiguration();
-			config.SplashScreen = "Best Bank ever";
-			using (var console = new ClientConsole(config))
+            var config = new ConsoleConfiguration {SplashScreen = "Best Bank ever"};
+
+            using (var console = new ClientConsole(config))
 			{
 				var rootCommand = new RootCommand(console);
 
-				rootCommand.RegisterCommand(container.GetInstance<InterfejsBanku.InterfejsBanku>());
+				rootCommand.RegisterCommand(Container.GetInstance<Kontener.InterfejsBanku>());
 
 				var commandEngine = new CommandEngine(rootCommand);
+
 				commandEngine.Start(args);
 			}
 		}

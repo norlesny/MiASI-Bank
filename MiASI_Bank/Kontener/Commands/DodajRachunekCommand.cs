@@ -1,8 +1,6 @@
-using System;
-using MiASI_Bank.Instytucja;
 using MiASI_Bank.Instytucja.Interfejsy;
 
-namespace MiASI_Bank.InterfejsBanku.Commands
+namespace MiASI_Bank.Kontener.Commands
 {
 	public class DodajRachunekCommand : BaseBankCommand
 	{
@@ -23,7 +21,7 @@ namespace MiASI_Bank.InterfejsBanku.Commands
 
 		public override void Invoke(string[] param)
 		{
-			if (bank.DodajRachunek())
+			if (Bank.DodajRachunek())
 			{
 				OutputInformation("Dodano rachunek");
 			}

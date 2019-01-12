@@ -1,5 +1,3 @@
-using System;
-using MiASI_Bank;
 using MiASI_Bank.Instytucja;
 using MiASI_Bank.Instytucja.Interfejsy;
 using MiASI_Bank.Interesanci;

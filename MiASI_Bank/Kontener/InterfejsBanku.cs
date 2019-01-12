@@ -1,9 +1,8 @@
-using MiASI_Bank.Instytucja;
 using MiASI_Bank.Instytucja.Interfejsy;
-using MiASI_Bank.InterfejsBanku.Commands;
+using MiASI_Bank.Kontener.Commands;
 using Tharga.Toolkit.Console.Commands.Base;
 
-namespace MiASI_Bank.InterfejsBanku
+namespace MiASI_Bank.Kontener
 {
 	public class InterfejsBanku : ContainerCommandBase
 	{

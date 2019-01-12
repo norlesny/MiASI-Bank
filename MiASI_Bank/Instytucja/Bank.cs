@@ -1,9 +1,7 @@
 using System.Collections.Generic;
 using MiASI_Bank.Instytucja.Interfejsy;
-using MiASI_Bank.Interesanci;
 using MiASI_Bank.Interesanci.Interfejsy;
 using MiASI_Bank.Produkt;
-using MiASI_Bank.Produkt.Fabryki;
 using MiASI_Bank.Produkt.Fabryki.Interfejsy;
 using MiASI_Bank.Produkt.Interfejsy;
 using MiASI_Bank.Raporty;

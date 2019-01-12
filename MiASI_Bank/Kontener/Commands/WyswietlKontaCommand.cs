@@ -1,8 +1,7 @@
 using System.Collections.Generic;
-using MiASI_Bank.Instytucja;
 using MiASI_Bank.Instytucja.Interfejsy;
 
-namespace MiASI_Bank.InterfejsBanku.Commands
+namespace MiASI_Bank.Kontener.Commands
 {
 	public class WyswietlKontaCommand : BaseBankCommand
 	{
@@ -11,7 +10,7 @@ namespace MiASI_Bank.InterfejsBanku.Commands
 
 		public override void Invoke(string[] param)
 		{
-			var konta = bank.PobierzKonta();
+			var konta = Bank.PobierzKonta();
 
 			var table = new List<string[]> {new[] {"Index", "Nazwa"}};
 			foreach (var konto in konta)

@@ -1,7 +1,6 @@
-using MiASI_Bank.Instytucja;
 using MiASI_Bank.Instytucja.Interfejsy;
 
-namespace MiASI_Bank.InterfejsBanku.Commands
+namespace MiASI_Bank.Kontener.Commands
 {
 	public class ZalozKontoCommand : BaseBankCommand
 	{
@@ -12,7 +11,7 @@ namespace MiASI_Bank.InterfejsBanku.Commands
 		{
 			var name = QueryParam<string>("Podaj nazwę", param);
 			
-			bank.ZalozKonto(name);
+			Bank.ZalozKonto(name);
 		}
 	}
 }

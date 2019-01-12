@@ -1,8 +1,7 @@
 using System;
-using MiASI_Bank.Instytucja;
 using MiASI_Bank.Instytucja.Interfejsy;
 
-namespace MiASI_Bank.InterfejsBanku.Commands
+namespace MiASI_Bank.Kontener.Commands
 {
 	public class AktualneKontoCommand : BaseBankCommand
 	{
@@ -11,9 +10,9 @@ namespace MiASI_Bank.InterfejsBanku.Commands
 
 		public override void Invoke(string[] param)
 		{
-			if (bank.Konto != null)
+			if (Bank.Konto != null)
 			{
-				Console.WriteLine($"Jesteś zalogowany na konto o nazwie: {bank.Konto.Name}");
+				Console.WriteLine($"Jesteś zalogowany na konto o nazwie: {Bank.Konto.Name}");
 			}
 			else
 			{

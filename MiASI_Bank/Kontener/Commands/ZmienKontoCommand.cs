@@ -1,8 +1,7 @@
 using System;
-using MiASI_Bank.Instytucja;
 using MiASI_Bank.Instytucja.Interfejsy;
 
-namespace MiASI_Bank.InterfejsBanku.Commands
+namespace MiASI_Bank.Kontener.Commands
 {
 	public class ZmienKontoCommand : BaseBankCommand
 	{
@@ -13,9 +12,9 @@ namespace MiASI_Bank.InterfejsBanku.Commands
 		{
 			var name = QueryParam<string>("Podaj nazwe", param);
 
-			if (bank.ZmienKonto(name))
+			if (Bank.ZmienKonto(name))
 			{
-				Console.WriteLine($"Jesteś teraz zalogowany na konto o nazwie: {bank.Konto.Name}");
+				Console.WriteLine($"Jesteś teraz zalogowany na konto o nazwie: {Bank.Konto.Name}");
 			}
 			else
 			{
