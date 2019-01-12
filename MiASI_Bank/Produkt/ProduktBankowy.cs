@@ -1,6 +1,9 @@
 using System;
+using MiASI_Bank.Interesanci;
+using MiASI_Bank.Interesanci.Interfejsy;
+using MiASI_Bank.Produkt.Interfejsy;
 
-namespace MiASI_Bank
+namespace MiASI_Bank.Produkt
 {
     public abstract class ProduktBankowy : IProduktBankowy
     {

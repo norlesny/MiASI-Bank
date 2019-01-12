@@ -1,4 +1,4 @@
-namespace MiASI_Bank
+namespace MiASI_Bank.Operacje
 {
     public class Operacja
     {

@@ -1,4 +1,6 @@
 using System;
+using MiASI_Bank.Instytucja;
+using MiASI_Bank.Instytucja.Interfejsy;
 
 namespace MiASI_Bank.InterfejsBanku.Commands
 {

@@ -1,6 +1,8 @@
 using System;
+using MiASI_Bank.Interesanci;
+using MiASI_Bank.Interesanci.Interfejsy;
 
-namespace MiASI_Bank
+namespace MiASI_Bank.Produkt.Interfejsy
 {
     public interface IProduktBankowy
     {

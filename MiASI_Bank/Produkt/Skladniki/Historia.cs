@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using MiASI_Bank.Operacje;
 
-namespace MiASI_Bank
+namespace MiASI_Bank.Produkt
 {
     public class Historia
     {

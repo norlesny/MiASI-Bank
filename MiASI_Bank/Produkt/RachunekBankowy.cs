@@ -1,8 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using MiASI_Bank.Interesanci;
+using MiASI_Bank.Interesanci.Interfejsy;
+using MiASI_Bank.Produkt.Interfejsy;
 
-namespace MiASI_Bank
+namespace MiASI_Bank.Produkt
 {
     public class RachunekBankowy : ProduktBankowy, IRachunekBankowy
     {

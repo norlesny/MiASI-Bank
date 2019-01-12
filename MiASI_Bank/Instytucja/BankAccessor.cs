@@ -1,7 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
+using MiASI_Bank.Instytucja.Interfejsy;
+using MiASI_Bank.Interesanci;
+using MiASI_Bank.Interesanci.Interfejsy;
 
-namespace MiASI_Bank
+namespace MiASI_Bank.Instytucja
 {
 	public class BankAccessor : IBankAccessor
 	{

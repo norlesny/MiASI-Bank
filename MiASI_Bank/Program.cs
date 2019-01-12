@@ -1,9 +1,12 @@
-﻿using SimpleInjector;
+﻿using MiASI_Bank.Instytucja;
+using MiASI_Bank.Instytucja.Interfejsy;
+using MiASI_Bank.Produkt.Fabryki;
+using MiASI_Bank.Produkt.Fabryki.Interfejsy;
+using SimpleInjector;
 using Tharga.Toolkit.Console;
 using Tharga.Toolkit.Console.Commands;
 using Tharga.Toolkit.Console.Consoles;
 using Tharga.Toolkit.Console.Entities;
-using Tharga.Toolkit.Console.Interfaces;
 
 namespace MiASI_Bank
 {

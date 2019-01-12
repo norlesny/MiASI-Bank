@@ -1,3 +1,5 @@
+using MiASI_Bank.Instytucja;
+using MiASI_Bank.Instytucja.Interfejsy;
 using MiASI_Bank.InterfejsBanku.Commands;
 using Tharga.Toolkit.Console.Commands.Base;
 

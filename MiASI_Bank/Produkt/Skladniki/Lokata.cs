@@ -1,6 +1,4 @@
-using System;
-
-namespace MiASI_Bank
+namespace MiASI_Bank.Produkt
 {
     public class Lokata: ProduktBankowy
     {

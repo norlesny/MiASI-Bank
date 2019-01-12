@@ -1,4 +1,6 @@
-namespace MiASI_Bank
+using MiASI_Bank.Interesanci.Interfejsy;
+
+namespace MiASI_Bank.Interesanci
 {
 	public class Wlasciciel : IWlasciciel
 	{

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using MiASI_Bank.Produkt.Interfejsy;
 
-namespace MiASI_Bank
+namespace MiASI_Bank.Raporty
 {
     public class Raportowanie
     {

@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace MiASI_Bank
+namespace MiASI_Bank.Raporty
 {
     public class Raport
     {
